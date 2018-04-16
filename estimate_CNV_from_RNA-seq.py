@@ -14,12 +14,11 @@ import numpy as np
 import sys
 
 # Data should always start in column 6 (index 5)
-rpkm = pd.read_table(sys.argv[1], sep="\t", header=0)
+rpkm_tmp = pd.read_table(sys.argv[1], sep="\t", header=0)
 
-rpkm = rpkm.sort_values(['chr', 'start'])
 # Write checks to make sure formatting is correct:
-rpkm = rpkm.sort_values(['chr', 'start']) # Make sure it's sorted
-
+rpkm = rpkm_tmp.sort_values(['chr', 'start']) # Make sure it's sorted
+rpkm = rpkm.reset_index(drop=True)
 # Write function for a gene call
 def cnvGene(i, rpkm_np_col):  # i is the number of the gene in the matrix/list; rpkm_np_col is a numpy array of all sample gene rpkm values
 	if i < 50:
