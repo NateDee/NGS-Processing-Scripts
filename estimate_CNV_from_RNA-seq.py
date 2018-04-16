@@ -1,5 +1,5 @@
 # Create CNV calculator program from RNA-Seq data using methods from:
-# https://www.ncbi.nlm.nih.gov/pubmed/24196873/
+# https://www.ncbi.nlm.nih.gov/pubmed/24925914
 
 # Start with sorted list of RPKM data, using genes with RPKM > 1
 # Sort must be chromosome 1-22, X, Y, from low to high base pairs
@@ -50,3 +50,5 @@ def cnvRpkm(rpkmdf):
 	
 cnv_results = cnvRpkm(rpkm)
 cnv_results.to_csv(sys.argv[2], sep="\t", header=True, index = False)
+
+# After output manually process normalization (subtract average of your reference from the log2(RPKM) CNVcounts given here.  Zero center.
